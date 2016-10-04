@@ -1,6 +1,7 @@
 # GradeManagement
-This was a project from my second entry level computer science course
-It is an enrollment system for administators  
+This was a project from my second entry level computer science course.
+
+It is an enrollment system for administators.  
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────┐
