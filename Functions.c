@@ -1,6 +1,11 @@
 #include "Structures.h"
 #include "functions.h"
 
+
+/*
+This Function displays the header information. 
+It contains everything neccisary for me to turn this project into the grader 
+*/
 void printHeader(void)
 {
 	printf("\n┌────────────────────────────────────────────────────────────────────────────────┐\n");
@@ -18,6 +23,10 @@ void printHeader(void)
 		  ###       ###    ###     ###     ###  ##                                    
 		 #######    ###    #######  ###### ###  ##                                    
 	 									   ###   */
+
+/*
+This displays the options the user has in a aesthetic, readable format. 
+*/
 void printMenu(void)
 {
 	//prints the menu
@@ -56,6 +65,7 @@ void printMenu(void)
 	printf("║                                                                                ║\n");
 	printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
 }
+
 //adds a course
 void addCourse(courses *courseArray)
 {
@@ -105,6 +115,7 @@ void addCourse(courses *courseArray)
 	printf("\nCourse %s %d %s has been successfully added", courseArray->courseList[courseArray->courseCount].department, courseArray->courseList[courseArray->courseCount].ID, courseArray->courseList[courseArray->courseCount].idName);
 	courseArray->courseCount += 1;
 }
+
 //adds a student
 void addStudent(students *studentArray)
 {
@@ -131,6 +142,7 @@ void addStudent(students *studentArray)
 	
 	studentArray->studentCount += 1;
 }
+
 //adds a student to a certain course
 void addStudentToCourse(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
@@ -168,9 +180,8 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 		printf("\nCheck list of all courses using 8 on the menu or list of all students using 9. One of them is empty.");
 	
 }
-//adds grades for a student in a certain course
 
-//********Where I am******************//
+//adds grades for a student in a certain course
 void addGrades(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	int course = pickCourse(courseArray);
@@ -213,6 +224,7 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 		printf("\nNo students are enrolled in this course.");
 }
 
+//prints out a list of grades for a specific course
 void printGrades(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	int course = pickCourse(courseArray);
