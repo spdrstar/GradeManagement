@@ -1,7 +1,7 @@
 # GradeManagement
 This was a project from my second entry level computer science course.
 
-It is an enrollment system for administators.  
+It is an enrollment system for classroom administration.  
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────────┐
@@ -53,4 +53,6 @@ The gradebook successfully saved to the file gradebook.dat
 Please select a number option from the above menu::
 
 ```
+
+The above output is the first menu displayed
 
