@@ -59,12 +59,6 @@ The above output is the first menu displayed in the application.
 It defines all the functionality.
 
 ## Build
-
-1. Install the files locally
-2. Navigate to the directory
-3. Run the command `make`
-4. Run the command `./a.out` in a large
-
 ```bash
 $ git clone https://github.com/spdrstar/GradeManagement.git
 $ cd GradeManagement
