@@ -58,16 +58,12 @@ Please select a number option from the above menu::
 The above output is the first menu displayed in the application. 
 It defines all the functionality.
 
-### 1) Add a new course
-###
-
-
 ## Build
 
 1. Install the files locally
 2. Navigate to the directory
 3. run the command `make`
-4. run the command './a.out' in fullscreen
+4. run the command `./a.out` in fullscreen
   
 
 
