@@ -86,7 +86,7 @@ int main(void)
     {
       if(enrollArray.enrollCount > 0)
       addGrades(&courseArray, &studentArray, &enrollArray);
-			else
+      else
 				printf("\nSorry, grades cannot be added because no one is enrolled");
 			printf("\npress ENTER to continue:: ");
 			scanf("%*c[\n]");
