@@ -141,7 +141,6 @@ bool addCourse(courses *courseArray)
  * When called, this function prompts the user for information necessary for a new student
  *
  * @param studentArray - Pointer to the courses array you want the new course to be added to
- * @return - True if student was successfully added, false if there was an error or the user cancelled
  */
 void addStudent(students *studentArray)
 {
@@ -179,7 +178,6 @@ void addStudent(students *studentArray)
  * @param courseArray - Pointer to the list of courses
  * @param studentArray - Pointer to the list of students
  * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
- * @return - True if the student and the course was successfully linked, false if there was an error or the user cancelled
  */
 void addStudentToCourse(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
@@ -219,12 +217,21 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 	
 }
 
-//adds grades for a student in a certain course
+/**
+ * Lets the user add grades to a certain student in a certain course
+ *
+ * When called, this function prompts the user for information neccisary to add grades to a student in a couse
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void addGrades(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	int course = pickCourse(courseArray);
 	
-	if(courseArray->courseList[course].studentsEnrolled > 0)
+	// Enter grades for a student if they are in the course
+  if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int student = pickStudentInCourse(courseArray, course, studentArray, enrollArray);
 		int numGrades, i, tempGrade;
@@ -239,14 +246,13 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 			enrollArray->enrollList[enrollment].gradeCap += numGrades;
 			enrollArray->enrollList[enrollment].gradeList = tempGrades;
 		}
-			//loops for each grade user wants to enter
+			// Loops for each grade user wants to enter
 			for(i=0;i<numGrades;i++)
 			{
 				printf("\nPlease enter a grade from 0 to 100:: ");
 				scanf("%d%*c", &tempGrade);
 				if(tempGrade >= 0 && tempGrade <= 100){
 					enrollArray->enrollList[enrollment].gradeList[gradeCount++] = tempGrade;
-					//enrollArray->enrollList[enrollment].gradeCount++;
 				}
 				else
 				{
@@ -254,7 +260,8 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 					i -= 1;
 				}
 			}
-			//update the grade count
+    
+			// Update the grade count
 			enrollArray->enrollList[enrollment].gradeCount += numGrades;
 			printf("Grades have been successfully added.");
 	}
@@ -262,19 +269,33 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 		printf("\nNo students are enrolled in this course.");
 }
 
-//prints out a list of grades for a specific course
+/**
+ * Prints all the grades for a student in a course
+ *
+ * When called, this function prompts the user for a certain course and a certain student 
+ * Then it prints all grades for that student in the course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void printGrades(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	int course = pickCourse(courseArray);
 	
-	if(courseArray->courseList[course].studentsEnrolled > 0)
+	// Print grades if a student in a course exists
+  if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int student = pickStudentInCourse(courseArray, course, studentArray, enrollArray);
 		int enrollment = detEnroll(enrollArray, courseArray, studentArray, course, student);
-		if(enrollArray->enrollList[enrollment].gradeCount > 0)
+		
+    // Prints grades if they exist
+    if(enrollArray->enrollList[enrollment].gradeCount > 0)
 		{
 			int i;
-			 printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
+			 // Poor optimization and readibility. I would never do this in a non-homework situation
+       // Show grades in a menu format for user readibility
+       printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
 			 printf("║                                                                                ║\n"); 																				 
 			 printf("║                      _____               _                                     ║\n");
 			 printf("║                     / ____|             | |                                    ║\n");
