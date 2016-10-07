@@ -70,7 +70,7 @@ void printMenu(void)
 /**
  * Prompt the user to create a new course and adds it to the courses array
  *
- * When called, this function prompts the user for information neccisary for a new course
+ * When called, this function prompts the user for information necessary for a new course
  *
  * @param courseArray - Pointer to the courses array you want the new course to be added to
  * @return - True if course was successfully added, false if there was an error or the user cancelled
@@ -135,12 +135,21 @@ bool addCourse(courses *courseArray)
     courseArray->courseCount += 1;
 }
 
-//adds a student
+/**
+ * Prompt the user to create a new student and adds them to the student array
+ *
+ * When called, this function prompts the user for information necessary for a new student
+ *
+ * @param studentArray - Pointer to the courses array you want the new course to be added to
+ * @return - True if student was successfully added, false if there was an error or the user cancelled
+ */
 void addStudent(students *studentArray)
 {
+	// Stores the name temporarily until it has been tested in the function 
 	char testName[MAX_STUDENT_NAME];
 	int i;
 	
+	// Adds a spot in the array for the new student being added (LinkedList) 
 	if(studentArray->studentCount == (int)studentArray->studentCap)
 	{
 		student *temp;
@@ -149,7 +158,7 @@ void addStudent(students *studentArray)
 		studentArray->studentList = temp;
 	}
 	
-	//recieves the students name and gives the student an ID number
+	// Recieves the students name and gives the student an ID number
 	printf("What is the students first name?:: ");
 	scanf("%s", studentArray->studentList[studentArray->studentCount].fname);
 	printf("What is the students last name?:: ");
@@ -162,11 +171,21 @@ void addStudent(students *studentArray)
 	studentArray->studentCount += 1;
 }
 
-//adds a student to a certain course
+/**
+ * Navigates the user through menus to add a student to a certain course
+ *
+ * When called, this function prompts the user for information neccisary to add a student to a course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ * @return - True if the student and the course was successfully linked, false if there was an error or the user cancelled
+ */
 void addStudentToCourse(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
-	int i, dup=0;
-	//lets the user make a selection in the array
+	int i, dup=0; 
+	
+	// Lets the user make a selection in the array
 	if(courseArray->courseCount > 0 && studentArray->studentCount > 0)
 	{
 		int course = pickCourse(courseArray);
