@@ -3,91 +3,89 @@
 
 int main(void)
 {
-	int menuChoice, autoSave;
-	char answer;
+  int menuChoice, autoSave;
+  char answer;
+
+  students studentArray;
+  courses courseArray;
+  enrollments enrollArray;
+
+  studentArray.studentCount = 0;
+  courseArray.courseCount = 0;
+  enrollArray.enrollCount = 0;
 	
-	students studentArray;
-	courses courseArray;
-	enrollments enrollArray;
+  studentArray.studentList = (student *) malloc (sizeof(student)* BUFFER);
+  courseArray.courseList = (course *) malloc (sizeof(course)* BUFFER);
+  enrollArray.enrollList = (enrollment *) malloc (sizeof(enrollment)* BUFFER);
 	
-	studentArray.studentCount = 0;
-	courseArray.courseCount = 0;
-	enrollArray.enrollCount = 0;
+  autoSave = 2;
 	
-	studentArray.studentList = (student *) malloc (sizeof(student)* BUFFER);
-	courseArray.courseList = (course *) malloc (sizeof(course)* BUFFER);
-	enrollArray.enrollList = (enrollment *) malloc (sizeof(enrollment)* BUFFER);
+  printHeader();
 	
-	
-	//int studentCount = 0;
-	//int courseCount = 0;
-	//int enrollCount = 0;
-	autoSave = 2;
-	
-	printHeader();
-	
-	do{
-	//displays the program options to the user
-	printMenu();
-	//initiates an autosave toggle
-	while(answer != 'n' && answer != 'y' && autoSave == 2)
-	{
-		printf("\nDo you want to enable autosave? (y or n):: ");
-		scanf("%1s", &answer);
-		if(answer == 'y')
-		{
-			autoSave = 1;
-			printf("Autosave is enabled.");
-		}
-		else if(answer == 'n')
-		{
-			autoSave = 0;
-			printf("Autosave is disabled.");
-		}
-		else
-			printf("\nSorry that wasn't valid. Try again.");
-	}
-	//gives the answer a value not n or y (messes with while loop latter)
-	answer = 'z';
-	//saves work if autosave is toggled on
-	if(autoSave == 1)
-		storeGradebook(&courseArray, &studentArray, &enrollArray);
+  do{
+  //displays the program options to the user
+  printMenu();
+  //initiates an autosave toggle
+  while(answer != 'n' && answer != 'y' && autoSave == 2)
+  {
+    printf("\nDo you want to enable autosave? (y or n):: ");
+    scanf("%1s", &answer);
+    if(answer == 'y')
+    {
+      autoSave = 1;
+      printf("Autosave is enabled.");
+    }
+    else if(answer == 'n')
+    {
+      autoSave = 0;
+      printf("Autosave is disabled.");
+    }
+    else
+    {
+      printf("\nSorry that wasn't valid. Try again.");
+    }
+  }
+  //gives the answer a value not n or y (messes with while loop latter)
+  answer = 'z';
+  //saves work if autosave is toggled on
+  if(autoSave == 1)
+    storeGradebook(&courseArray, &studentArray, &enrollArray);
 		
-	//asks and takes a selection from the user
-	printf("\nPlease select a number option from the above menu:: ");
-	scanf("%d", &menuChoice);
+  //asks and takes a selection from the user
+  printf("\nPlease select a number option from the above menu:: ");
+  scanf("%d", &menuChoice);
 	
-	//connections the user choice to the task requested
-	switch(menuChoice)
-	{
-		case 1:
-		{
-			addCourse(&courseArray);
+  //connections the user choice to the task requested
+  switch(menuChoice)
+  {
+    case 1:
+    {
+      addCourse(&courseArray);
 			
-			printf("\npress ENTER to continue:: ");
-			scanf("%*c[\n]");
-			break;
-		}
-		case 2:
-		{
-			addStudent(&studentArray);
+      printf("\npress ENTER to continue:: ");
+      scanf("%*c[\n]");
+      break;
+    }
+    case 2:
+    {
+      addStudent(&studentArray);
 
-			printf("\npress ENTER to continue:: ");
-			scanf("%*c[\n]");
-			break;
-		}
-		case 3:
-		{
-			addStudentToCourse(&courseArray, &studentArray, &enrollArray);
+      printf("\npress ENTER to continue:: ");
+      scanf("%*c[\n]");
+      break;
+    }
+    case 3:
+    {
+      addStudentToCourse(&courseArray, &studentArray, &enrollArray);
 
-			printf("\npress ENTER to continue:: ");
-			scanf("%*c[\n]");
-			break;
-		}
-		case 4:
-		{
-			if(enrollArray.enrollCount > 0)
-				addGrades(&courseArray, &studentArray, &enrollArray);
+      printf("\npress ENTER to continue:: ");
+      scanf("%*c[\n]");
+      break;
+    }
+    case 4:
+    {
+      if(enrollArray.enrollCount > 0)
+      addGrades(&courseArray, &studentArray, &enrollArray);
 			else
 				printf("\nSorry, grades cannot be added because no one is enrolled");
 			printf("\npress ENTER to continue:: ");
