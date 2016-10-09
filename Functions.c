@@ -3,8 +3,8 @@
 
 
 /*
-This Function displays the header information. 
-It contains everything neccisary for me to turn this project into the grader 
+* This Function displays the header information. 
+* It contains everything neccisary for me to turn this project into the grader 
 */
 void printHeader(void)
 {
@@ -25,8 +25,8 @@ void printHeader(void)
 	 									   ###   */
 
 /*
-This displays the options the user has in a aesthetic, readable format. 
-This implementation is ugly, but because it is a homework that doesn't need 
+* This displays the options the user has in a aesthetic, readable format. 
+* 
 */
 void printMenu(void)
 {
@@ -295,7 +295,7 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 			int i;
 			 // Poor optimization and readibility. I would never do this in a non-homework situation
        // Show grades in a menu format for user readibility
-       printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
+     printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
 			 printf("║                                                                                ║\n"); 																				 
 			 printf("║                      _____               _                                     ║\n");
 			 printf("║                     / ____|             | |                                    ║\n");
@@ -327,20 +327,28 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 		printf("No students are enrolled in this course!");
 }
 
-//prints  the students enrolled in a certain course
+/**
+ * outputs all of the students for a specific course
+ *
+ * When called, this function prompts the user for a certain course
+ * Then it prints all the students for that course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void printStudentinCourse(courses *courseArray,int courseAddress,students *studentArray,enrollments *enrollArray)
 {
-	//int course = pickCourse(courses, courseCount);
 	int student, i;
 	
-	printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
+ printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
 	 printf("║                                                                                ║\n"); 																				 
 	 printf("║                     _____ _             _            _                         ║\n");
-     printf("║                    / ____| |           | |          | |                        ║\n");
-     printf("║                   | (___ | |_ _   _  __| | ___ _ __ | |_ ___                   ║\n");
-     printf("║                    \\___ \\| __| | | |/ _` |/ _ \\ '_ \\| __/ __|                  ║\n");
-     printf("║                    ____) | |_| |_| | (_| |  __/ | | | |_\\__ \\                  ║\n");
-     printf("║                   |_____/ \\__|\\__,_|\\__,_|\\___|_| |_|\\__|___/                  ║\n");
+   printf("║                    / ____| |           | |          | |                        ║\n");
+   printf("║                   | (___ | |_ _   _  __| | ___ _ __ | |_ ___                   ║\n");
+   printf("║                    \\___ \\| __| | | |/ _` |/ _ \\ '_ \\| __/ __|                  ║\n");
+   printf("║                    ____) | |_| |_| | (_| |  __/ | | | |_\\__ \\                  ║\n");
+   printf("║                   |_____/ \\__|\\__,_|\\__,_|\\___|_| |_|\\__|___/                  ║\n");
 	 printf("║                                                                                ║\n");
 	 printf("║                     for course: %20s                           ║\n", courseArray->courseList[courseAddress].idName); 																				 
 	 printf("╠════════════════════════════════════════════════════════════════════════════════╣\n");
@@ -361,15 +369,28 @@ void printStudentinCourse(courses *courseArray,int courseAddress,students *stude
 	 
 }
 
-//Calculates the average for a student in a certain class
+/**
+ * outputs the average for a specific student in a specific course
+ *
+ * When called, this function prompts the user for a certain course and student
+ * Then it prints the average for that student in that course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void averageStudentGrade(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	int course = pickCourse(courseArray);
-	if(courseArray->courseList[course].studentsEnrolled > 0)
+  
+	// Makes sure there are students in the course to calculate average
+  if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int student = pickStudentInCourse(courseArray, course, studentArray, enrollArray);
 		int enrollment = detEnroll(enrollArray, courseArray, studentArray, course, student);
-		if(enrollArray->enrollList[enrollment].gradeCount > 0)
+		
+    // Makes sure there are grades in the course to calculate average
+    if(enrollArray->enrollList[enrollment].gradeCount > 0)
 		{
 			int i; 
 			double sum = 0.0;
@@ -388,7 +409,13 @@ void averageStudentGrade(courses *courseArray, students *studentArray, enrollmen
 		printf("\nCannot average because no students are enrolled in a course");
 }
 
-//prints all of the courses
+/**
+ * outputs all of the courses
+ *
+ * When called, this function prints all the current courses
+ *
+ * @param courseArray - Pointer to the list of courses
+ */
 void printCourses(courses *courseArray)
 {
 	 int i;
@@ -413,7 +440,14 @@ void printCourses(courses *courseArray)
 	 printf("║                                                                                ║\n");
 	 printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
 }
-//prints all students
+
+/**
+ * outputs the students currently enrolled
+ *
+ * When called, this function outputs the students
+ *
+ * @param studentArray - Pointer to the list of students
+ */
 void printStudents(students *studentArray)
 {
 	 int i;
@@ -439,19 +473,28 @@ void printStudents(students *studentArray)
 	 printf("║                                                                                ║\n");
 	 printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
 }
-//Calculates the average for all grades in a course 
+
+/**
+ * Outputs the average for all of the students for a specific course
+ *
+ * When called, this function prompts the user for a certain course
+ * Then it prints the average for that course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void courseAverage(courses *courseArray, enrollments *enrollArray)
 {
-	//lets the user pick a course
+	// Lets the user pick a course
 	int course = pickCourse(courseArray);
 	
-	//checks enrollment
+	// Checks enrollment
 	if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int i,j, gradeCounter = 0; 
 		double sum = 0.0;
 		
-		//goes through every student and every grade and adds them up
+		// Goes through every student and every grade and adds them up
 		for(i=0;i<(int)enrollArray->enrollCount;i++)
 		{
 			if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID && enrollArray->enrollList[i].gradeCount > 0)
@@ -463,7 +506,7 @@ void courseAverage(courses *courseArray, enrollments *enrollArray)
 				}
 			}
 		}
-		//takes the average if a grade exists
+		// Takes the average if a grade exists
 		if(gradeCounter > 0)
 		{
 			double average = sum / gradeCounter;
@@ -475,7 +518,16 @@ void courseAverage(courses *courseArray, enrollments *enrollArray)
 	else
 		printf("\nThere are no students in this course.");
 }
-//saves gradebook
+
+/**
+ * Saves all the current information for students, courses, and enrollment
+ *
+ * When called, this function saves three Linked Lists into a data file
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void storeGradebook(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	FILE* gradebook = fopen("gradebook.dat", "w");
@@ -492,7 +544,16 @@ void storeGradebook(courses *courseArray, students *studentArray, enrollments *e
 		printf("Gradebook did not save. Please try again later");
 	fclose(gradebook);
 }
-//loads previous save of gradebook
+
+/**
+ * Loads all the current information for students, courses, and enrollment
+ *
+ * When called, this function loads three Linked Lists from a data file to the program
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 void loadGradebook(courses *courseArray, students *studentArray, enrollments *enrollArray)
 {
 	FILE* gradebook = fopen("gradebook.dat", "r");
@@ -512,7 +573,13 @@ void loadGradebook(courses *courseArray, students *studentArray, enrollments *en
 
 /* Extra Classes for easier tasks  */
 
-//lets the user pick a course
+/**
+ * Shows the user a list of courses and takes in a course from the user
+ *
+ * When called, this function displays the courses and prompts the user to choose one
+ *
+ * @param courseArray - Pointer to the list of courses
+ */
 int pickCourse(courses *courseArray)
 {
 	int temp = 0;
@@ -526,7 +593,14 @@ int pickCourse(courses *courseArray)
 		return pickCourse(courseArray);
 	}
 }
-//lets the user pick a student
+
+/**
+ * Shows a menu of students and takes in a selection from the user
+ *
+ * When called, this function displays the list of students and takes in a selection from the user
+ *
+ * @param studentArray - Pointer to the list of students
+ */
 int pickStudent(students *studentArray)
 {
 	int temp;
@@ -540,7 +614,16 @@ int pickStudent(students *studentArray)
 		return pickStudent(studentArray);
 	}
 }
-//lets the user pick a student in a course
+
+/**
+ * Lets the user pick a student in a course
+ *
+ * When called, this function prompts the user to pick a course and then to pick a student in that course
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ */
 int pickStudentInCourse(courses *courseArray, int courseAddress, students *studentArray, enrollments *enrollArray)
 {
 	int temp;
@@ -555,13 +638,25 @@ int pickStudentInCourse(courses *courseArray, int courseAddress, students *stude
 		return pickStudentInCourse(courseArray, courseAddress, studentArray, enrollArray);
 	}
 }
-//detects the enrollment the user needs
+
+/**
+ * Checks to see if student is enrolled in a course
+ *
+ * When called, this function checks the enrollment list and checks if it matched with a certain course and student
+ *
+ * @param courseArray - Pointer to the list of courses
+ * @param studentArray - Pointer to the list of students
+ * @param enrollArray - Pointer to an array that links students and courses together with ID numbers and relevant information
+ * @param courseAddress - Integer that stores the address of the course in the course array to check with enrollment
+ * @param studentAddress - Integer that stores the address of the student in the student array to check with enrollment
+ */
 int detEnroll(enrollments *enrollArray, courses *courseArray, students *studentArray, int courseAddress, int studentAddress)
 {
 	int i;
 	for(i=0;i<enrollArray->enrollCount;i++)
 	{
-		if(enrollArray->enrollList[i].courseID == courseArray->courseList[courseAddress].ID && enrollArray->enrollList[i].studentID == studentArray->studentList[studentAddress].ID)
+		if(enrollArray->enrollList[i].courseID == courseArray->courseList[courseAddress].ID && 
+       enrollArray->enrollList[i].studentID == studentArray->studentList[studentAddress].ID)
 			return i;
 	}
 	return -1;
