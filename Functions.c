@@ -77,62 +77,64 @@ void printMenu(void)
  */
 bool addCourse(courses *courseArray)
 {
-    char testDepart[MAX_COURSE_SUBJECT], testCourse[MAX_COURSE_NAME], testID[4]; 
-    int i;
-    int valid = 0;
+  char testDepart[MAX_COURSE_SUBJECT], testCourse[MAX_COURSE_NAME], testID[4]; 
+  int i;
+  int valid = 0;
     
-    // Find the end of the array and add memory to the course about to be added
-    if (courseArray->courseCount == (int)courseArray->courseCap)
-    {
-        course *temp;
-        temp = (course *) realloc(courseArray->courseList, sizeof(course)* ((int)courseArray->courseCap + BUFFER));
-        courseArray->courseCap += BUFFER;
-        courseArray->courseList = temp;
-    }
+  // Find the end of the array and add memory to the course about to be added
+  if (courseArray->courseCount == (int)courseArray->courseCap)
+  {
+    course *temp;
+    temp = (course *) realloc(courseArray->courseList, sizeof(course)* ((int)courseArray->courseCap + BUFFER));
+    courseArray->courseCap += BUFFER;
+    courseArray->courseList = temp;
+  }
         
-    // Take in the apprivation for the class and uppercase it for format and easy sorting     
-    printf("\nPlease enter the department abbrivation (up to 4 capital letters):: ");
-    scanf("%4s", testDepart);
-    for (i=0;i<strlen(testDepart);i++) 
-        testDepart[i] = toupper(testDepart[i]);
+  // Take in the apprivation for the class and uppercase it for format and easy sorting     
+  printf("\nPlease enter the department abbrivation (up to 4 capital letters):: ");
+  scanf("%4s", testDepart);
+  for (i=0;i<strlen(testDepart);i++) 
+  {
+      testDepart[i] = toupper(testDepart[i]);
+  }
+ 
+  strcpy((courseArray->courseList[courseArray->courseCount].department),testDepart);
     
-    strcpy((courseArray->courseList[courseArray->courseCount].department),testDepart);
+  // Take in a four digit number to define the difficulty of the class
+  do {
+    printf("\nPlease enter the 4 digit ID to correlate to your class:: ");
+    scanf("%4s%*c", testID);
+    for (i=0;i<4;i++)
+    {
+      if (isdigit(testID[i]))
+      {
+        valid++;
+      }
+    }
+    if (valid = 4)
+    {
+      courseArray->courseList[courseArray->courseCount].ID = atoi(testID);
+      valid++;
+    }
+    else
+    {
+      printf("\nSorry that wasn't a 4 digit number, please try again");
+      valid = 0;
+    }
+  } while (valid < 4);
     
-    // Take in a four digit number to define the difficulty of the class
-    do {
-        printf("\nPlease enter the 4 digit ID to correlate to your class:: ");
-        scanf("%4s%*c", testID);
-        for (i=0;i<4;i++)
-        {
-            if (isdigit(testID[i]))
-            {
-                valid++;
-            }
-        }
-        if (valid = 4)
-        {
-            courseArray->courseList[courseArray->courseCount].ID = atoi(testID);
-            valid++;
-        }
-        else
-        {
-            printf("\nSorry that wasn't a 4 digit number, please try again");
-            valid = 0;
-        }
-    } while (valid < 4);
+  // Enter a proper name for the course being added
+  printf("\nFinally, please enter a name for your course (limit is 20 characters):: ");
+  scanf("%[^\n]s", courseArray->courseList[courseArray->courseCount].idName); 
     
-    // Enter a proper name for the course being added
-    printf("\nFinally, please enter a name for your course (limit is 20 characters):: ");
-    scanf("%[^\n]s", courseArray->courseList[courseArray->courseCount].idName); 
-    
-    // Say what was added from the user as confirmation
-    printf(
-        "\nCourse %s %d %s has been successfully added",
-        courseArray->courseList[courseArray->courseCount].department,
-        courseArray->courseList[courseArray->courseCount].ID,
-        courseArray->courseList[courseArray->courseCount].idName
-    );
-    courseArray->courseCount += 1;
+  // Say what was added from the user as confirmation
+  printf(
+    "\nCourse %s %d %s has been successfully added",
+    courseArray->courseList[courseArray->courseCount].department,
+    courseArray->courseList[courseArray->courseCount].ID,
+    courseArray->courseList[courseArray->courseCount].idName
+  );
+  courseArray->courseCount += 1;
 }
 
 /**
@@ -191,11 +193,11 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 		int student = pickStudent(studentArray);
 	
 		for(i=0;i<(int)enrollArray->enrollCount; i++)
-			{
-				if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID 
-           && enrollArray->enrollList[i].studentID == studentArray->studentList[student].ID)
-					dup = 1;
-			}
+		{
+		  if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID 
+      && enrollArray->enrollList[i].studentID == studentArray->studentList[student].ID)
+			dup = 1;
+		}
 		
 		// Checks to see if student can still add classes
 		if(dup == 0)
