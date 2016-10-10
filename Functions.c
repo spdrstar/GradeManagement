@@ -674,5 +674,3 @@ int detEnroll(enrollments *enrollArray, courses *courseArray, students *studentA
 	}
 	return -1;
 }
-
-
