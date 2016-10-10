@@ -136,7 +136,7 @@ bool addCourse(courses *courseArray)
 }
 
 /**
- * Prompt the user to create a new student and adds them to the student array
+ * Prompt the user to create a new student and add them to the student array
  *
  * When called, this function prompts the user for information necessary for a new student
  *
@@ -171,7 +171,7 @@ void addStudent(students *studentArray)
 }
 
 /**
- * Navigates the user through menus to add a student to a certain course
+ * Navigate the user through menus to add a student to a certain course
  *
  * When called, this function prompts the user for information neccisary to add a student to a course
  *
@@ -195,10 +195,10 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 					dup = 1;
 			}
 		
-		//checks to see if student can still add classes
+		// Checks to see if student can still add classes
 		if(dup == 0)
 		{
-			//if he/she can then enroll them (update all the variables)
+			// If he/she can then enroll them (update all the variables)
 			enrollArray->enrollList[enrollArray->enrollCount].studentID = studentArray->studentList[student].ID;
 			enrollArray->enrollList[enrollArray->enrollCount].courseID = courseArray->courseList[course].ID;
 			enrollArray->enrollList[enrollArray->enrollCount].gradeCount = 0;
@@ -218,7 +218,7 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 }
 
 /**
- * Lets the user add grades to a certain student in a certain course
+ * Let the user add grades to a certain student in a certain course
  *
  * When called, this function prompts the user for information neccisary to add grades to a student in a couse
  *
@@ -270,7 +270,7 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 }
 
 /**
- * Prints all the grades for a student in a course
+ * Print all the grades for a student in a course
  *
  * When called, this function prompts the user for a certain course and a certain student 
  * Then it prints all grades for that student in the course
@@ -328,7 +328,7 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 }
 
 /**
- * outputs all of the students for a specific course
+ * Output all of the students for a specific course
  *
  * When called, this function prompts the user for a certain course
  * Then it prints all the students for that course
@@ -370,7 +370,7 @@ void printStudentinCourse(courses *courseArray,int courseAddress,students *stude
 }
 
 /**
- * outputs the average for a specific student in a specific course
+ * Output the average for a specific student in a specific course
  *
  * When called, this function prompts the user for a certain course and student
  * Then it prints the average for that student in that course
@@ -383,13 +383,13 @@ void averageStudentGrade(courses *courseArray, students *studentArray, enrollmen
 {
 	int course = pickCourse(courseArray);
   
-	// Makes sure there are students in the course to calculate average
+	// Make sure there are students in the course to calculate average
   if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int student = pickStudentInCourse(courseArray, course, studentArray, enrollArray);
 		int enrollment = detEnroll(enrollArray, courseArray, studentArray, course, student);
 		
-    // Makes sure there are grades in the course to calculate average
+    // Make sure there are grades in the course to calculate average
     if(enrollArray->enrollList[enrollment].gradeCount > 0)
 		{
 			int i; 
@@ -410,7 +410,7 @@ void averageStudentGrade(courses *courseArray, students *studentArray, enrollmen
 }
 
 /**
- * outputs all of the courses
+ * Output all of the courses
  *
  * When called, this function prints all the current courses
  *
@@ -442,7 +442,7 @@ void printCourses(courses *courseArray)
 }
 
 /**
- * outputs the students currently enrolled
+ * Output the students currently enrolled
  *
  * When called, this function outputs the students
  *
@@ -475,7 +475,7 @@ void printStudents(students *studentArray)
 }
 
 /**
- * Outputs the average for all of the students for a specific course
+ * Output the average for all of the students for a specific course
  *
  * When called, this function prompts the user for a certain course
  * Then it prints the average for that course
@@ -574,7 +574,7 @@ void loadGradebook(courses *courseArray, students *studentArray, enrollments *en
 /* Extra Classes for easier tasks  */
 
 /**
- * Shows the user a list of courses and takes in a course from the user
+ * Show the user a list of courses and take in a course from the user
  *
  * When called, this function displays the courses and prompts the user to choose one
  *
@@ -595,7 +595,7 @@ int pickCourse(courses *courseArray)
 }
 
 /**
- * Shows a menu of students and takes in a selection from the user
+ * Show a menu of students and take in a selection from the user
  *
  * When called, this function displays the list of students and takes in a selection from the user
  *
@@ -616,7 +616,7 @@ int pickStudent(students *studentArray)
 }
 
 /**
- * Lets the user pick a student in a course
+ * Let the user pick a student in a course
  *
  * When called, this function prompts the user to pick a course and then to pick a student in that course
  *
@@ -640,7 +640,7 @@ int pickStudentInCourse(courses *courseArray, int courseAddress, students *stude
 }
 
 /**
- * Checks to see if student is enrolled in a course
+ * Check to see if student is enrolled in a course
  *
  * When called, this function checks the enrollment list and checks if it matched with a certain course and student
  *
