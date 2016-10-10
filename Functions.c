@@ -148,7 +148,7 @@ void addStudent(students *studentArray)
 	char testName[MAX_STUDENT_NAME];
 	int i;
 	
-	// Adds a spot in the array for the new student being added (LinkedList) 
+	// Add a spot in the array for the new student being added (LinkedList) 
 	if(studentArray->studentCount == (int)studentArray->studentCap)
 	{
 		student *temp;
@@ -157,7 +157,7 @@ void addStudent(students *studentArray)
 		studentArray->studentList = temp;
 	}
 	
-	// Recieves the students name and gives the student an ID number
+	// Recieve the students name and gives the student an ID number
 	printf("What is the students first name?:: ");
 	scanf("%s", studentArray->studentList[studentArray->studentCount].fname);
 	printf("What is the students last name?:: ");
@@ -165,7 +165,8 @@ void addStudent(students *studentArray)
 	studentArray->studentList[studentArray->studentCount].ID = STUDENT_ID + studentArray->studentCount; 
 	studentArray->studentList[studentArray->studentCount].amountOfCourses = 0;
 	
-	printf("\nStudent %s %s has been added and has ID number %d", studentArray->studentList[studentArray->studentCount].fname, studentArray->studentList[studentArray->studentCount].lname, studentArray->studentList[studentArray->studentCount].ID);
+	printf("\nStudent %s %s has been added and has ID number %d", studentArray->studentList[studentArray->studentCount].fname, 
+         studentArray->studentList[studentArray->studentCount].lname, studentArray->studentList[studentArray->studentCount].ID);
 	
 	studentArray->studentCount += 1;
 }
@@ -191,7 +192,8 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 	
 		for(i=0;i<(int)enrollArray->enrollCount; i++)
 			{
-				if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID && enrollArray->enrollList[i].studentID == studentArray->studentList[student].ID)
+				if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID 
+           && enrollArray->enrollList[i].studentID == studentArray->studentList[student].ID)
 					dup = 1;
 			}
 		
@@ -207,7 +209,8 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 			courseArray->courseList[course].studentsEnrolled += 1;
 			(enrollArray->enrollCount)++;
 			
-			printf("\nStudent %s %s has been added to course %s %d %s", studentArray->studentList[student].fname, studentArray->studentList[student].lname, courseArray->courseList[course].department, courseArray->courseList[course].ID, courseArray->courseList[course].idName);
+			printf("\nStudent %s %s has been added to course %s %d %s", studentArray->studentList[student].fname, studentArray->studentList[student].lname, 
+             courseArray->courseList[course].department, courseArray->courseList[course].ID, courseArray->courseList[course].idName);
 		}
 		else
 			printf("\nstudent %s %s is already enrolled", studentArray->studentList[student].fname, studentArray->studentList[student].lname);
@@ -289,7 +292,7 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 		int student = pickStudentInCourse(courseArray, course, studentArray, enrollArray);
 		int enrollment = detEnroll(enrollArray, courseArray, studentArray, course, student);
 		
-    // Prints grades if they exist
+    // Print grades if they exist
     if(enrollArray->enrollList[enrollment].gradeCount > 0)
 		{
 			int i;
@@ -304,7 +307,8 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 			 printf("║                    | |__| | | | (_| | (_| |  __/\\__ \\                          ║\n");
 			 printf("║                     \\_____|_|  \\__,_|\\__,_|\\___||___/                          ║\n");
 			 printf("║                                                                                ║\n");							
-			 printf("║ for student: %15s %15s in course: %20s   ║\n", studentArray->studentList[student].fname, studentArray->studentList[student].lname, courseArray->courseList[course].idName); 																				 
+			 printf("║ for student: %15s %15s in course: %20s   ║\n", studentArray->studentList[student].fname, studentArray->studentList[student].lname, 
+              courseArray->courseList[course].idName); 																				 
 			 printf("╠════════════════════════════════════════════════════════════════════════════════╣\n");
 			 printf("║                                                                                ║\n");
 			 printf("║       Grades:                                                                  ║\n");
@@ -313,7 +317,8 @@ void printGrades(courses *courseArray, students *studentArray, enrollments *enro
 			 for(i=0;i<enrollArray->enrollList[enrollment].gradeCount;i++)
 			 {
 				
-				printf("║    %2d) %3d                                                                     ║\n", i+1, enrollArray->enrollList[enrollment].gradeList[i]);
+				printf("║    %2d) %3d                                                                     ║\n", i+1, 
+               enrollArray->enrollList[enrollment].gradeList[i]);
 			 }
 			 printf("║                                                                                ║\n");
 			 printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
@@ -360,7 +365,8 @@ void printStudentinCourse(courses *courseArray,int courseAddress,students *stude
 	 {
 		 if(enrollArray->enrollList[i].courseID == courseArray->courseList[courseAddress].ID){
 			student = enrollArray->enrollList[i].studentID - STUDENT_ID;
-		printf("║    %3d) %-20s %-20s %-8d                     ║\n", i+1, studentArray->studentList[student].fname, studentArray->studentList[student].lname, studentArray->studentList[student].ID);
+		printf("║    %3d) %-20s %-20s %-8d                     ║\n", i+1, studentArray->studentList[student].fname, 
+           studentArray->studentList[student].lname, studentArray->studentList[student].ID);
 		}
 	 }
 	 printf("║                                                                                ║\n");
@@ -400,7 +406,8 @@ void averageStudentGrade(courses *courseArray, students *studentArray, enrollmen
 				sum += enrollArray->enrollList[enrollment].gradeList[i];
 			average = sum / (double)enrollArray->enrollList[enrollment].gradeCount;
 			
-			printf("\nThe average for student %s %s in class %s is %.2f", studentArray->studentList[student].fname, studentArray->studentList[student].lname, courseArray->courseList[course].idName, average);
+			printf("\nThe average for student %s %s in class %s is %.2f", studentArray->studentList[student].fname, 
+             studentArray->studentList[student].lname, courseArray->courseList[course].idName, average);
 		}
 		else
 			printf("\nCannot average because there are no grades");
@@ -435,7 +442,8 @@ void printCourses(courses *courseArray)
 	 
 	 for(i=0;i<courseArray->courseCount;i++)
 	 {
-		 printf("║              %2d) %-4s       %-4d %-20s                          ║\n", i+1, courseArray->courseList[i].department, courseArray->courseList[i].ID, courseArray->courseList[i].idName);
+		 printf("║              %2d) %-4s       %-4d %-20s                          ║\n", i+1, 
+            courseArray->courseList[i].department, courseArray->courseList[i].ID, courseArray->courseList[i].idName);
 	 }
 	 printf("║                                                                                ║\n");
 	 printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
@@ -468,7 +476,8 @@ void printStudents(students *studentArray)
 	 
 	 for(i=0;i<studentArray->studentCount;i++)
 	 {
-		 printf("║    %-3d) %-20s %-20s %-8d                     ║\n", i+1, studentArray->studentList[i].fname, studentArray->studentList[i].lname, studentArray->studentList[i].ID);
+		 printf("║    %-3d) %-20s %-20s %-8d                     ║\n", i+1, studentArray->studentList[i].fname, 
+            studentArray->studentList[i].lname, studentArray->studentList[i].ID);
 	 }
 	 printf("║                                                                                ║\n");
 	 printf("╚════════════════════════════════════════════════════════════════════════════════╝\n");
@@ -497,7 +506,8 @@ void courseAverage(courses *courseArray, enrollments *enrollArray)
 		// Goes through every student and every grade and adds them up
 		for(i=0;i<(int)enrollArray->enrollCount;i++)
 		{
-			if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID && enrollArray->enrollList[i].gradeCount > 0)
+			if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID 
+         && enrollArray->enrollList[i].gradeCount > 0)
 			{
 				for(j=0;j<enrollArray->enrollList[i].gradeCount;j++)
 				{
@@ -510,7 +520,8 @@ void courseAverage(courses *courseArray, enrollments *enrollArray)
 		if(gradeCounter > 0)
 		{
 			double average = sum / gradeCounter;
-			printf("\nThe average for course %s is %.2f", courseArray->courseList[course].idName, average);
+			printf("\nThe average for course %s is %.2f", 
+             courseArray->courseList[course].idName, average);
 		}
 		else
 			printf("\nThere are no grades in this course.");
