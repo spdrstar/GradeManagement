@@ -3,7 +3,7 @@
 
 
 /*
-* This Function displays the header information. 
+* Display the header information. 
 * It contains everything neccisary for me to turn this project into the grader 
 */
 void printHeader(void)
@@ -25,13 +25,13 @@ void printHeader(void)
 	 									   ###   */
 
 /*
-* This displays the options the user has in a aesthetic, readable format. 
+* Display the options the user has in a aesthetic, readable format. 
 * 
 */
 void printMenu(void)
 {
 	//prints the menu
-    printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
+  printf("\n╔════════════════════════════════════════════════════════════════════════════════╗\n");
 	printf("║                                                                                ║\n"); 																				 
 	printf("║            _____  __            __                                             ║\n");
 	printf("║           /__  / / /____  _____/ /_                                            ║\n");
@@ -146,7 +146,7 @@ bool addCourse(courses *courseArray)
  */
 void addStudent(students *studentArray)
 {
-	// Stores the name temporarily until it has been tested in the function 
+	// Store the name temporarily until it has been tested in the function 
 	char testName[MAX_STUDENT_NAME];
 	int i;
 	
@@ -186,7 +186,7 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 {
 	int i, dup=0; 
 	
-	// Lets the user make a selection in the array
+	// Let the user make a selection in the array
 	if(courseArray->courseCount > 0 && studentArray->studentCount > 0)
 	{
 		int course = pickCourse(courseArray);
@@ -199,7 +199,7 @@ void addStudentToCourse(courses *courseArray, students *studentArray, enrollment
 			dup = 1;
 		}
 		
-		// Checks to see if student can still add classes
+		// Check to see if student can still add classes
 		if(dup == 0)
 		{
 			// If he/she can then enroll them (update all the variables)
@@ -251,7 +251,7 @@ void addGrades(courses *courseArray, students *studentArray, enrollments *enroll
 			enrollArray->enrollList[enrollment].gradeCap += numGrades;
 			enrollArray->enrollList[enrollment].gradeList = tempGrades;
 		}
-			// Loops for each grade user wants to enter
+			// Loop for each grade user wants to enter
 			for(i=0;i<numGrades;i++)
 			{
 				printf("\nPlease enter a grade from 0 to 100:: ");
@@ -496,16 +496,16 @@ void printStudents(students *studentArray)
  */
 void courseAverage(courses *courseArray, enrollments *enrollArray)
 {
-	// Lets the user pick a course
+	// Let the user pick a course
 	int course = pickCourse(courseArray);
 	
-	// Checks enrollment
+	// Check enrollment
 	if(courseArray->courseList[course].studentsEnrolled > 0)
 	{
 		int i,j, gradeCounter = 0; 
 		double sum = 0.0;
 		
-		// Goes through every student and every grade and adds them up
+		// Go through every student and every grade and add them up
 		for(i=0;i<(int)enrollArray->enrollCount;i++)
 		{
 			if(enrollArray->enrollList[i].courseID == courseArray->courseList[course].ID 
@@ -518,7 +518,7 @@ void courseAverage(courses *courseArray, enrollments *enrollArray)
 				}
 			}
 		}
-		// Takes the average if a grade exists
+		// Take the average if a grade exists
 		if(gradeCounter > 0)
 		{
 			double average = sum / gradeCounter;
