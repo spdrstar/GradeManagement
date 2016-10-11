@@ -1,9 +1,9 @@
-//libraries
+// Libraries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-//data constants
+// Data constants
 #define STUDENT_MAX 100
 #define COURSES_MAX 25
 #define STUDENT_MAX_COURSES 4
@@ -20,7 +20,7 @@
 typedef struct
 {
 	int ID;
-	char fname[MAX_STUDENT_NAME]; //first and last name of the student
+	char fname[MAX_STUDENT_NAME]; // First and Last name of the student
 	char lname[MAX_STUDENT_NAME];
 	int amountOfCourses;
 	struct stu *next;
@@ -46,7 +46,7 @@ typedef struct
  struct enroll *next;
 }enrollment;
 
-//dynamic memory allocation setup
+// Dynamic memory allocation setup
 typedef struct{
 	int studentCount;	
 	int *studentCap;
