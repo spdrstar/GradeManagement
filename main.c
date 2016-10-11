@@ -212,7 +212,8 @@ int main(void)
 			// Help (Will be added in later version)
 			case 13:
 			{
-				printf("\nHelp will be added in a later update. Thank-you for using ZTech Grade Management Solutions, where your grades, matter!");
+				printf("\nHelp will be added in a later update. Thank-you for using ZTech Grade Management Solutions, 
+				       where your grades, matter!");
 				printf("\npress ENTER to continue:: ");
 				scanf("%*c[\n]");
 				break;
