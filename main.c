@@ -18,17 +18,17 @@ int main(void)
   // Take in a y or n for yes or no questions
   char answer;
 
-  //arrays to store all of the information in this application
+  // Store all of the information in this application
   students studentArray;
   courses courseArray;
   enrollments enrollArray;
 
-  //array size
+  // Array size
   studentArray.studentCount = 0;
   courseArray.courseCount = 0;
   enrollArray.enrollCount = 0;
 	
-  //memory allocation for the arrays
+  // Memory allocation for the arrays
   studentArray.studentList = (student *) malloc (sizeof(student)* BUFFER);
   courseArray.courseList = (course *) malloc (sizeof(course)* BUFFER);
   enrollArray.enrollList = (enrollment *) malloc (sizeof(enrollment)* BUFFER);
