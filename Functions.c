@@ -4,7 +4,7 @@
 
 /*
 * Display the header information. 
-* It contains everything neccisary for me to turn this project into the grader 
+* It contains everything necessary for me to turn this project into the grader 
 */
 void printHeader(void)
 {
